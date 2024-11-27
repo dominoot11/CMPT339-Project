@@ -1,0 +1,43 @@
+/* Markus Blessing CSS Foundation */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: #004080;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+nav ul {
+    background: #ccc;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav ul li {
+    flex: 1;
+    text-align: center;
+}
+nav ul li a {
+    color: black;
+    display: block;
+    padding: 0.5em;
+    text-decoration: none;
+}
+nav ul li a:hover {
+    background: #ddd;
+}
+section {
+    margin: 1em;
+}
+form label {
+    display: block;
+    margin-top: 0.5em;
+}
+form input, form button {
+    margin-top: 0.5em;
+    width: 100%;
+}
