@@ -156,18 +156,18 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE updateJob (
     IN p_JobID VARCHAR(5),
-    IN p_JobStage CHAR(1),  -- Not NULL; updated
-    IN p_JobStageDescription VARCHAR(50), -- Not NULL; updated
-    IN p_JobType VARCHAR(30),  -- Not NULL; updated
-    IN p_JobSite VARCHAR(30),  -- Not NULL; updated
-    IN p_CrewID VARCHAR(5),  -- Updated
-    IN p_HoursNeeded INT,  -- Updated
-    IN p_StartDate DATE,  -- Updated
-    IN p_CompletionDate DATE,  -- Updated
-    IN p_DueDate DATE,  -- Updated
-    IN p_Cost DECIMAL(10, 2),  -- Updated
-    IN p_Address VARCHAR(50),  -- Updated
-    IN p_ClientID VARCHAR(5)  -- Updated
+    IN p_JobStage CHAR(1),
+    IN p_JobStageDescription VARCHAR(50)
+    IN p_JobType VARCHAR(30),
+    IN p_JobSite VARCHAR(30),
+    IN p_CrewID VARCHAR(5),
+    IN p_HoursNeeded INT,
+    IN p_StartDate DATE,
+    IN p_CompletionDate DATE, 
+    IN p_DueDate DATE, 
+    IN p_Cost DECIMAL(10, 2), 
+    IN p_Address VARCHAR(50),
+    IN p_ClientID VARCHAR(5)
 )
 BEGIN
     UPDATE jobs
