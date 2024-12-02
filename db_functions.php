@@ -3,7 +3,7 @@ function fetchAndDisplayTable($tableName, $columns) {
     $host = 'localhost'; // Replace with your host
     $user = 'root'; // Replace with your username
     $password = ''; // Replace with your password
-    $dbname = 'tradesFlow'; // Replace with your database name
+    $dbname = 'TradesFlow'; // Replace with your database name
 
     try {
         // Create a PDO connection
