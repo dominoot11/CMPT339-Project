@@ -128,7 +128,7 @@ JOIN schedule s ON j.JobID = s.JobID
 
 -- Procedures
 
--- Add / Update / Delete
+-- Add / Update / Delete / Alter
 
 -- Job
 DELIMITER //
@@ -197,6 +197,19 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE alterJobsDefaults(
+    IN columnName VARCHAR(50),
+    IN newDefaultValue VARCHAR(50)
+)
+BEGIN
+    SET @query = CONCAT('ALTER TABLE jobs ALTER COLUMN ', columnName, ' SET DEFAULT "', newDefaultValue, '";');
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END //
+DELIMITER ;
+
 
 -- Client
 DELIMITER //
@@ -262,6 +275,19 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE alterClientsDefaults(
+    IN columnName VARCHAR(50),
+    IN newDefaultValue VARCHAR(50)
+)
+BEGIN
+    SET @query = CONCAT('ALTER TABLE clients ALTER COLUMN ', columnName, ' SET DEFAULT "', newDefaultValue, '";');
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END //
+DELIMITER ;
+
 
 -- Crew
 DELIMITER //
@@ -303,6 +329,20 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE alterCrewsDefaults(
+    IN columnName VARCHAR(50),
+    IN newDefaultValue VARCHAR(50)
+)
+BEGIN
+    SET @query = CONCAT('ALTER TABLE crews ALTER COLUMN ', columnName, ' SET DEFAULT "', newDefaultValue, '";');
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END //
+DELIMITER ;
+
+
 -- Worker
 DELIMITER //
 CREATE PROCEDURE addWorker (
@@ -337,7 +377,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE deleteWorder(
+CREATE PROCEDURE deleteWorker(
     IN p_WorkerID VARCHAR(5)
 )
 BEGIN
@@ -345,6 +385,20 @@ BEGIN
     WHERE WorkerID = p_WorkerID;
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE alterWorkersDefaults(
+    IN columnName VARCHAR(50),
+    IN newDefaultValue VARCHAR(50)
+)
+BEGIN
+    SET @query = CONCAT('ALTER TABLE workers ALTER COLUMN ', columnName, ' SET DEFAULT "', newDefaultValue, '";');
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END //
+DELIMITER ;
+
 
 -- Schedule
 DELIMITER //
@@ -400,6 +454,20 @@ BEGIN
     WHERE JobID = p_JobID AND CurrentWeek = p_CurrentWeek;
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE alterScheduleDefaults(
+    IN columnName VARCHAR(50),
+    IN newDefaultValue VARCHAR(50)
+)
+BEGIN
+    SET @query = CONCAT('ALTER TABLE schedule ALTER COLUMN ', columnName, ' SET DEFAULT "', newDefaultValue, '";');
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END //
+DELIMITER ;
+
 
 -- Filter
 
