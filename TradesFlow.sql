@@ -89,7 +89,7 @@ CONSTRAINT FK_Schedule_Jobs FOREIGN KEY (JobID) REFERENCES Jobs(JobID)
 
 -- Simple Jobs
 CREATE VIEW simple_jobs AS
-SELECT JobID, JobStage, Address, StartDate, CompletionDate, DueDate, Cost
+SELECT JobID, JobStage, StartDate, CompletionDate, DueDate, Cost, Address
 FROM jobs;
 
 -- Crews and Members
