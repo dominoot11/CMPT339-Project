@@ -121,7 +121,7 @@ SELECT j.JobID, j.JobSite, j.JobStage, w.FirstName AS WorkerFirstName,
 FROM jobs j
 JOIN workers w ON j.CrewID = w.CrewID
 JOIN crews c ON w.CrewID = c.CrewID
-JOIN schedule s ON j.JobID = s.JobID
+JOIN schedule s ON j.JobID = s.JobID;
 
 
 
@@ -485,7 +485,7 @@ DELIMITER ;
 
 -- Active Jobs (Uses a view)
 DELIMITER //
-CREATE PROCEDURE getJobsByStage()
+CREATE PROCEDURE getCurrentJobs()
 BEGIN
     SELECT JobID, Address, StartDate, CompletionDate, DueDate, Cost
     FROM simple_jobs
