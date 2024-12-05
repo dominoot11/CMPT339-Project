@@ -3,28 +3,6 @@ USE tradesmanager;
 
 -- Table Creation
 
-DROP TABLE IF EXISTS jobs;
-
--- Jobs Table
-CREATE TABLE jobs (
-    JobID VARCHAR(5) PRIMARY KEY NOT NULL,
-    JobStage CHAR(1) DEFAULT 'New', 
-    JobStageDescription VARCHAR(50),
-    JobType VARCHAR(30),
-    JobSite VARCHAR(30),
-    CrewID VARCHAR(5),
-    HoursNeeded INT,
-    StartDate DATE, 
-    CompletionDate DATE,
-    DueDate DATE,
-    Cost DECIMAL(10, 2) DEFAULT 0.00,
-    Address VARCHAR(50),
-    ClientID VARCHAR(5),
-    CONSTRAINT FK_Jobs_Clients FOREIGN KEY (ClientID) REFERENCES Clients(ClientID),
-    CONSTRAINT FK_Jobs_Crews FOREIGN KEY (CrewID) REFERENCES Crews(CrewID)
-);
-
-
 DROP TABLE IF EXISTS clients;
 
 -- Client Table
@@ -54,6 +32,27 @@ CrewSize INT,
 Cost Decimal(10, 2)
 );
 
+
+DROP TABLE IF EXISTS jobs;
+
+-- Jobs Table
+CREATE TABLE jobs (
+    JobID VARCHAR(5) PRIMARY KEY NOT NULL,
+    JobStage CHAR(1) DEFAULT 'A', 
+    JobStageDescription VARCHAR(50),
+    JobType VARCHAR(30),
+    JobSite VARCHAR(30),
+    CrewID VARCHAR(5),
+    HoursNeeded INT,
+    StartDate DATE, 
+    CompletionDate DATE,
+    DueDate DATE,
+    Cost DECIMAL(10, 2) DEFAULT 0.00,
+    Address VARCHAR(50),
+    ClientID VARCHAR(5),
+    CONSTRAINT FK_Jobs_Clients FOREIGN KEY (ClientID) REFERENCES Clients(ClientID),
+    CONSTRAINT FK_Jobs_Crews FOREIGN KEY (CrewID) REFERENCES Crews(CrewID)
+);
 
 DROP TABLE IF EXISTS workers;
 
