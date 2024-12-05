@@ -157,7 +157,7 @@ DELIMITER //
 CREATE PROCEDURE updateJob (
     IN p_JobID VARCHAR(5),
     IN p_JobStage CHAR(1),
-    IN p_JobStageDescription VARCHAR(50)
+    IN p_JobStageDescription VARCHAR(50),
     IN p_JobType VARCHAR(30),
     IN p_JobSite VARCHAR(30),
     IN p_CrewID VARCHAR(5),
@@ -484,7 +484,7 @@ END //
 DELIMITER ;
 
 
--- Active Jobs
+-- Active Jobs (Uses a view)
 DELIMITER //
 CREATE PROCEDURE getJobsByStage()
 BEGIN
@@ -494,7 +494,7 @@ BEGIN
 END //
 DELIMITER ;
 
--- crews and members
+-- crews and members (Uses a view)
 DELIMITER //
 CREATE PROCEDURE viewCrew(
     IN p_CrewID VARCHAR(5)
@@ -521,7 +521,7 @@ END //
 DELIMITER ;
 
 
--- Client Schedule
+-- Client Schedule (Uses a view)
 DELIMITER //
 CREATE PROCEDURE getClientSchedule(
     IN p_ClientID VARCHAR(5)
@@ -535,7 +535,7 @@ END //
 DELIMITER ;
 
 
--- Crew Schedule
+-- Crew Schedule (Uses a view)
 DELIMITER //
 CREATE PROCEDURE getCrewSchedule(
     IN p_CrewID VARCHAR(5)
