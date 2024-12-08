@@ -6,6 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client View</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Avoid double borders */
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black; /* Add a border to each cell */
+            /*padding: 10px; /* Add padding for better readability */
+            text-align: left; /* Align content to the left */
+        }
+        th {
+            background-color: #f2f2f2; /* Header background color */
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Alternate row colors */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -31,11 +49,39 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- the info for clients will go here -->
+                <tr>
+                    <td>001</td>
+                    <td>Markus</td>
+                    <td>Blessing</td>
+                    <td>6047672934</td>
+                    <td>markusblessing2003@icloud.com</td>
+                    <td>13151 240 St</td>
+                    <td>Maple Ridge</td>
+                    <td>V4R 0A5</td>
+                    <td>B.C.</td>
+                    <td>Canada</td>
+                    <td>2003-12-10</td>
+                    <td>M</td>
+                <tr>
+                <tr>
+                    <td>002</td>
+                    <td>Stefen</td>
+                    <td>Blessing</td>
+                    <td>6047295634</td>
+                    <td>1978@telus.net</td>
+                    <td>13151 240 St</td>
+                    <td>Maple Ridge</td>
+                    <td>V4R 0A5</td>
+                    <td>B.C.</td>
+                    <td>Canada</td>
+                    <td>1968-01-05</td>
+                    <td>M</td>
+                <tr>
+                <!-- tde info for clients will go here -->
             </tbody>
         </table>
     </section>
     <a href="ClientEdit.html" style="position: fixed; bottom: 25px; right: 25px;"><button>Client Manager</button></a>
-    <a href="Index.html" style="position: fixed; bottom: 50px; right: 25px;"><button>Home</button>
+    <a href="index.html" style="position: fixed; bottom: 50px; right: 25px;"><button>Home</button>
 </body>
 </html>

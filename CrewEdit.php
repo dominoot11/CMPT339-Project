@@ -1,3 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crew Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Crew Management System</h1>
+    </header>
+
+    <!-- Add Crew Section -->
+    <section>
+        <h2>Add a New Crew</h2>
+        <form action="addCrew.php" method="POST">
+            <label for="crewID">Crew ID:</label>
+            <input type="text" id="crewID" name="crewID" required><br>
+
+            <label for="specialty">Specialty:</label>
+            <input type="text" id="specialty" name="specialty" required><br>
+
+            <label for="crewSize">Crew Size:</label>
+            <input type="number" id="crewSize" name="crewSize" required><br>
+
+            <label for="cost">Cost:</label>
+            <input type="number" id="cost" name="cost" required><br>
+
+            <button type="submit">Add Crew</button>
+        </form>
+    </section>
+
+    <!-- View and Manage Crew Section -->
+    <section>
+        <h2>Manage Crew</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Crew ID</th>
+                    <th>Specialty</th>
+                    <th>Crew Size</th>
+                    <th>Cost</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Connect to the database
+                include 'dbConnection.php';
+
+                $sql = "SELECT * FROM crew";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>{$row['crewID']}</td>
+                                <td>{$row['specialty']}</td>
+                                <td>{$row['crewSize']}</td>
+                                <td>{$row['cost']}</td>
+                                <td>
+                                    <form action='deleteRowCrew.php' method='POST' style='display:inline;'>
+                                        <input type='hidden' name='crewID' value='{$row['crewID']}'>
+                                        <button type='submit'>Delete</button>
+                                    </form>
+                                    <form action='editRowCrew.php' method='POST' style='display:inline;'>
+                                        <input type='hidden' name='crewID' value='{$row['crewID']}'>
+                                        <button type='submit'>Edit</button>
+                                    </form>
+                                </td>
+                              </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>No crews available.</td></tr>";
+                }
+
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Navigation Links -->
+    <footer>
+    <a href="CrewView.php" style="position: fixed; bottom: 25px; right: 25px;"><button>Crews</button>
+    <a href="index.html" style="position: fixed; bottom: 50px; right: 25px;"><button>Home</button>
+    </footer>
+</body>
+</html>
+
+
+
 <!-- Markus Blessing 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,7 +187,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Dynamic Rows Will Be Added Here 
+                 Dynamic Rows Will Be Added Here 
             </tbody>
         </table>
     </section>
@@ -157,97 +250,3 @@
 </body>
 </html>
 -->
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crew Management</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Crew Management System</h1>
-    </header>
-
-    <!-- Add Crew Section -->
-    <section>
-        <h2>Add a New Crew</h2>
-        <form action="addCrew.php" method="POST">
-            <label for="crewID">Crew ID:</label>
-            <input type="text" id="crewID" name="crewID" required><br>
-
-            <label for="specialty">Specialty:</label>
-            <input type="text" id="specialty" name="specialty" required><br>
-
-            <label for="crewSize">Crew Size:</label>
-            <input type="number" id="crewSize" name="crewSize" required><br>
-
-            <label for="cost">Cost:</label>
-            <input type="number" id="cost" name="cost" required><br>
-
-            <button type="submit">Add Crew</button>
-        </form>
-    </section>
-
-    <!-- View and Manage Crew Section -->
-    <section>
-        <h2>Manage Crew</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Crew ID</th>
-                    <th>Specialty</th>
-                    <th>Crew Size</th>
-                    <th>Cost</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                // Connect to the database
-                include 'dbConnection.php';
-
-                $sql = "SELECT * FROM crew";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                                <td>{$row['crewID']}</td>
-                                <td>{$row['specialty']}</td>
-                                <td>{$row['crewSize']}</td>
-                                <td>{$row['cost']}</td>
-                                <td>
-                                    <form action='deleteRow.php' method='POST' style='display:inline;'>
-                                        <input type='hidden' name='crewID' value='{$row['crewID']}'>
-                                        <button type='submit'>Delete</button>
-                                    </form>
-                                    <form action='editRow.php' method='POST' style='display:inline;'>
-                                        <input type='hidden' name='crewID' value='{$row['crewID']}'>
-                                        <button type='submit'>Edit</button>
-                                    </form>
-                                </td>
-                              </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='5'>No crews available.</td></tr>";
-                }
-
-                $conn->close();
-                ?>
-            </tbody>
-        </table>
-    </section>
-
-    <!-- Navigation Links -->
-    <footer>
-        <a href="index.html"><button>Home</button></a>
-    </footer>
-</body>
-</html>

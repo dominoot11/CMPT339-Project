@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job View</title>
+    <title>View Client Schedules</title>
     <link rel="stylesheet" href="style.css">
     <style>
         table {
@@ -27,33 +27,31 @@
 </head>
 <body>
     <header>
-        <h1>Jobs Table</h1>
+        <h1>Client Schedule Table</h1>
     </header>
     <section>
-        <h2>View Jobs</h2>
         <table>
             <thead>
                 <tr>
                     <th>Job ID</th>
+                    <th>Job Site</th>
                     <th>Job Stage</th>
-                    <th>Description</th>
-                    <th>Type</th>
-                    <th>Site</th>
-                    <th>Crew ID</th>
-                    <th>Hours</th>
-                    <th>Start Date</th>
-                    <th>Completion Date</th>
-                    <th>Due Date</th>
-                    <th>Cost</th>
-                    <th>Address</th>
+                    <th>Current Week</th>
+                    <th>Sunday</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>  
+                    <th>Client ID</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- info for jobs will go here -->
+                <!-- the info for schedule will go here -->
             </tbody>
         </table>
     </section>
-    <a href="JobEdit.php" style="position: fixed; bottom: 25px; right: 25px;"><button>Job Manager</button></a>
-    <a href="index.html" style="position: fixed; bottom: 50px; right: 25px;"><button>Home</button>
+        <a href="index.html" style="position: fixed; bottom: 25px; right: 25px;"><button>Home</button>
 </body>
 </html>
