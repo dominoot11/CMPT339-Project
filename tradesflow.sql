@@ -185,3 +185,39 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- Simple Jobs
+CREATE VIEW simple_jobs AS
+SELECT JobID, JobStage, StartDate, CompletionDate, DueDate, Cost, Address
+FROM jobs;
+
+-- Crews and Members
+CREATE VIEW crew_members AS
+SELECT 
+    c.CrewID, 
+    c.Specialty AS CrewSpecialty, 
+    c.CrewSize, 
+    c.Cost AS CrewCost,
+    w.WorkerID, 
+    w.FirstName AS WorkerFirstName, 
+    w.LastName AS WorkerLastName
+FROM crews c
+LEFT JOIN workers w ON c.CrewID = w.CrewID;
+
+-- Schedule for Clients. When used, can filter by clientID
+CREATE VIEW client_schedule AS
+SELECT j.JobID, j.JobSite, j.JobStage, s.CurrentWeek, 
+       s.Sunday, s.Monday, s.Tuesday, s.Wednesday, 
+       s.Thursday, s.Friday, s.Saturday, j.ClientID
+FROM jobs j
+JOIN schedule s ON j.JobID = s.JobID;
+
+-- Schedule for crews and workers. When used, can filter by crewID 
+CREATE VIEW crew_schedule AS
+SELECT j.JobID, j.JobSite, j.JobStage, w.FirstName AS WorkerFirstName,
+       w.LastName AS WorkerLastName, c.Specialty AS CrewSpecialty, s.CurrentWeek,
+       s.Sunday, s.Monday, s.Tuesday, s.Wednesday, s.Thursday, s.Friday, s.Saturday
+FROM jobs j
+JOIN workers w ON j.CrewID = w.CrewID
+JOIN crews c ON w.CrewID = c.CrewID
+JOIN schedule s ON j.JobID = s.JobID;

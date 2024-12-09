@@ -44,7 +44,34 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- info for simple jobsjobs will go here -->
+                <?php
+                // Include the database connection
+                include 'dbConnection.php';
+
+                // Call the stored procedure to get active jobs
+                $sql = SELECT JobID, Address, StartDate, CompletionDate, DueDate, Cost FROM simple_jobs WHERE JobStage NOT IN ('J', 'K');
+                $result = $conn->query($sql);
+
+                if ($result && $result->num_rows > 0) {
+                    // Output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>" . htmlspecialchars($row['JobID']) . "</td>
+                                <td>" . htmlspecialchars($row['Address']) . "</td>
+                                <td>" . htmlspecialchars($row['StartDate']) . "</td>
+                                <td>" . htmlspecialchars($row['CompletionDate']) . "</td>
+                                <td>" . htmlspecialchars($row['DueDate']) . "</td>
+                                <td>" . htmlspecialchars($row['Cost']) . "</td>
+                              </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>No active jobs found in the database.</td></tr>";
+                }
+
+                // Close the result set and database connection
+                $result->close();
+                $conn->close();
+                ?>            
             </tbody>
         </table>
     </section>
